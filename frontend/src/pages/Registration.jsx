@@ -3,16 +3,35 @@ import { motion } from "framer-motion";
 import Input from "../components/Input";
 import { User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import { useRegistrationMutation } from "../redux/api/personApiSlice.js";
 
 const Registration = () => {
   const [id, setId] = useState("");
   const [employeeNumber, setEmployeeNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [alphabetPronunciation, setAlphabetPronunciation] = useState("");
   const [jpPronunciation, setJpPronunciation] = useState("");
 
-  const submitHandler = (e) => {
+  const [register, { isLoading }] = useRegistrationMutation();
+
+  const submitHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      const res = await register({
+        id,
+        employeeNumber,
+        email,
+        name: { name, alphabetPronunciation, jpPronunciation },
+      }).unwrap();
+    } catch (error) {
+      console.log(error);
+      toast.error(error.data?.message);
+    }
+
     console.log("RegistrationSubmitHandlerを通過しました");
   };
 
@@ -44,6 +63,13 @@ const Registration = () => {
             placeholder="ID"
             value={id}
             onChange={(e) => setId(e.target.value)}
+          />
+          <Input
+            icon={User}
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             icon={User}

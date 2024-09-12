@@ -1,5 +1,5 @@
 import { apiSlice } from "./apiSlice";
-import { PERSON_URL } from "../../constants";
+import { PERSON_URL } from "../constants.js";
 
 export const personApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -20,3 +20,5 @@ export const personApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const { useRegistrationMutation, useGetAllPersonQuery } = personApiSlice;

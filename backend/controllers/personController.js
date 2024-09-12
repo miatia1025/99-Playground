@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import Person from "../models/personModel.js";
+import asyncHandler from "../middlewares/asyncHandler.js";
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ const logout = async (req, res) => {
   return 0;
 };
 
-const personRegistration = async (req, res) => {
+const personRegistration = asyncHandler(async (req, res) => {
   // Get request body
   const {
     employeeNumber,
@@ -65,7 +66,7 @@ const personRegistration = async (req, res) => {
   } catch (e) {
     res.status(400).json({ success: false, message: e.message });
   }
-};
+});
 
 const addLisence = async (req, res) => {
   const { lisenceId, lisenceName, lisenceNumber, expiresAt } = req.body;
