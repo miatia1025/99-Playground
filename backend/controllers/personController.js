@@ -23,6 +23,20 @@ const logout = async (req, res) => {
   return 0;
 };
 
+const getAllPerson = asyncHandler(async (req, res) => {
+  // Get all person
+  try {
+    const allPerson = await Person.find();
+    const allPersonIds = allPerson.map((person) => person.id);
+    res.status(200).json({ success: true, message: allPersonIds });
+
+    console.log(allPersonIds);
+    console.log(`Served ${allPerson.length} persons`);
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+});
+
 const personRegistration = asyncHandler(async (req, res) => {
   // Get request body
   const {
@@ -72,4 +86,4 @@ const addLisence = async (req, res) => {
   const { lisenceId, lisenceName, lisenceNumber, expiresAt } = req.body;
 };
 
-export { signup, login, logout, personRegistration };
+export { signup, login, logout, personRegistration, getAllPerson };

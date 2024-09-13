@@ -27,6 +27,8 @@ const Registration = () => {
         email,
         name: { name, alphabetPronunciation, jpPronunciation },
       }).unwrap();
+
+      toast.success(res.message);
     } catch (error) {
       console.log(error);
       toast.error(error.data?.message);

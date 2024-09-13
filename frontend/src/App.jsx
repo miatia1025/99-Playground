@@ -7,20 +7,7 @@ import Logout from "./pages/Logout";
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-900 via-green-900 to-emerald-900 flex justify-center items-center relative overflow-hidden">
-      <div>
-        <Link to="/">Home</Link>
-      </div>
-      <div>
-        <Link to="/registration">Registration</Link>
-      </div>
-      <div>
-        <Link to="/login">Login</Link>
-      </div>
-      <div>
-        <Link to="/logout">Logout</Link>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-emerald-900 flex justify-center items-center relative overflow-hidden">
       {/* Routing */}
       <Routes>
         <Route path="/" element={<Home />} />
