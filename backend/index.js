@@ -6,6 +6,7 @@ import connectDB from "./db/connectDB.js";
 
 // Routes
 import authRoutes from "./Routes/authRoutes.js";
+import algoliaRoutes from "./Routes/algoliaRoutes.js";
 import personRoutes from "./Routes/personRoutes.js";
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/person", personRoutes);
+app.use("/api/algolia", algoliaRoutes);
 
 app.listen(port, () => {
   connectDB();

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
+import Algolia from "./pages/Algolia";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/algolia" element={<Algolia />} />
       </Routes>
     </div>
   );

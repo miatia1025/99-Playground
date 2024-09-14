@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // Search Engine
 import { liteClient as algoliasearch } from "algoliasearch/lite";
-import { Hits, InstantSearch, SearchBox } from "react-instantsearch";
+import { Highlight, Hits, InstantSearch, SearchBox } from "react-instantsearch";
 
 const Home = () => {
   const [id, setId] = useState("");
@@ -24,16 +24,19 @@ const Home = () => {
   const searchClient = algoliasearch(algoliaAppID, algoliaApiKey);
 
   const Hit = ({ hit }) => {
-    <>
-      return <p>{hit}</p>;
-    </>;
+    console.log(hit.name.name);
+    return <p>{hit.name.name}</p>;
+  };
+
+  const SearchResult = () => {
+    return <Hits hitComponent={Hit} />;
   };
 
   return (
     <>
       <InstantSearch searchClient={searchClient} indexName="employee_list">
         <SearchBox />
-        <Hits hitComponent={Hit} />
+        <SearchResult />
       </InstantSearch>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
