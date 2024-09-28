@@ -28,10 +28,10 @@ const getAllPerson = asyncHandler(async (req, res) => {
   try {
     const allPerson = await Person.find();
     const allPersonIds = allPerson.map((person) => person.id);
-    res.status(200).json({ success: true, message: allPersonIds });
-
     console.log(allPersonIds);
     console.log(`Served ${allPerson.length} persons`);
+
+    res.status(200).json({ success: true, message: allPersonIds });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }

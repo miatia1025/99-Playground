@@ -2,10 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-// Search Engine
-import { liteClient as algoliasearch } from "algoliasearch/lite";
-import { Highlight, Hits, InstantSearch, SearchBox } from "react-instantsearch";
-
 const Home = () => {
   const [id, setId] = useState("");
   const [employeeNumber, setEmployeeNumber] = useState("");
@@ -18,26 +14,8 @@ const Home = () => {
     console.log("HomeSubmitHandlerを通過しました");
   };
 
-  const algoliaAppID = "MVSHZ9B40C";
-  const algoliaApiKey = "b567cbcb368ff2b82e97477ec41366f7";
-
-  const searchClient = algoliasearch(algoliaAppID, algoliaApiKey);
-
-  const Hit = ({ hit }) => {
-    console.log(hit.name.name);
-    return <p>{hit.name.name}</p>;
-  };
-
-  const SearchResult = () => {
-    return <Hits hitComponent={Hit} />;
-  };
-
   return (
     <>
-      <InstantSearch searchClient={searchClient} indexName="employee_list">
-        <SearchBox />
-        <SearchResult />
-      </InstantSearch>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -65,7 +43,7 @@ const Home = () => {
             <Link to={"/registration"}>登録</Link>
           </p>
           <p className="w-full text-sm text-green-400 hover:underline">
-            <Link to={"/login"}>ログイン</Link>
+            <Link to={"/list"}>一覧</Link>
           </p>
           <p className="w-full text-sm text-green-400 hover:underline">
             <Link to={"/logout"}>ログアウト</Link>
