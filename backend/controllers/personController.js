@@ -37,7 +37,7 @@ const getAllPerson = asyncHandler(async (req, res) => {
   }
 });
 
-const personRegistration = asyncHandler(async (req, res) => {
+const personRegistration = asyncHandler(async (req, res, next) => {
   // Get request body
   const {
     employeeNumber,
@@ -73,10 +73,11 @@ const personRegistration = asyncHandler(async (req, res) => {
     await person.save();
 
     console.log(`Name: ${name} passed User Registration route`);
-    res.status(201).json({
-      success: true,
-      message: `${person.name.name} [${person.email}] 登録完了！`,
-    });
+    // res.status(201).json({
+    //   success: true,
+    //   message: `${person.name.name} [${person.email}] 登録完了！`,
+    // });
+    next();
   } catch (e) {
     res.status(400).json({ success: false, message: e.message });
   }

@@ -107,7 +107,10 @@ const diffSync = asyncHandler(async (req, res) => {
       objectIDs: minusDocs.map((doc) => doc.objectID),
     });
 
-    res.status(200).json({ success: true, message: "test" });
+    res.status(201).json({
+      success: true,
+      message: `登録完了！`,
+    });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }

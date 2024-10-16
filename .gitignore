@@ -26,3 +26,6 @@ dist-ssr
 # Secrets
 .env
 .local.env
+
+.frontmatter
+.docker2
